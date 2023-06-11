@@ -1,0 +1,22 @@
+{
+  "name": "myrpg",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon -e mustache,js,css,html ./bin/www"
+  },
+  "dependencies": {
+    "bootstrap": "^3.4.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "mustache-express": "^1.3.2",
+    "nodemon": "^2.0.22",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
