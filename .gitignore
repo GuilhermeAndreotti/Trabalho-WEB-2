@@ -1,0 +1,20 @@
+# Logs
+logs
+*.log
+
+# Arquivos gerados pela aplicação
+dist/
+build/
+
+# Dependências
+node_modules/
+
+# Arquivos de configuração
+.env
+
+# Arquivos de backup
+*.bak
+*.swp
+
+# Arquivos de cache
+.cache/
