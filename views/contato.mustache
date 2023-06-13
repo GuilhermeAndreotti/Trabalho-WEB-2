@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Contato</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
+
+</head>
+<body>
+    <header class="blue-background">
+        <div class="logo">
+            <img src="images/logo.png" alt="Swordplay Logo" class="logoimg">
+            <b class="texto-titulo">Swordplay - CP</b>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/sobre">Proposta</a></li>
+                <li><a href="">Projeto</a></li>
+                <li><a href="">Tecnologias e Ferramentas</a></li>
+               <li><a href="">Entrar em contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="div-conteudo">
+        
+        <div class="contato">
+            
+            <h1>Envie um email para gente! </h1>
+            
+            <form action="/enviarEmail" method="POST">
+
+                <div class="form-group">
+                    <label for="email">Seu E-mail:</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="nome">Seu nome:</label>
+                    <input type="nome" id="nome" name="nome" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="assunto">Assunto:</label>
+                    <input type="text" id="assunto" name="assunto" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" class="form-control" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+    <footer class="blue-background">
+        Swordplay - CP || @swordplaycputfpr
+    </footer>
+</body>
+</html>

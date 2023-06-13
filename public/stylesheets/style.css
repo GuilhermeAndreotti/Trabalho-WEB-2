@@ -8,6 +8,11 @@ body {
   margin-top: 200px;
 }
 
+.contato {
+  width: 60%;
+  margin-top: 100px;
+}
+
 .logoimg {
   width: 12%;
   border-radius: 15px;
@@ -24,7 +29,7 @@ body {
 
 .div-conteudo {
   display: flex;
-  justify-content: right;
+  justify-content: center;
   width: 100%;
   height: 100vh;
 }

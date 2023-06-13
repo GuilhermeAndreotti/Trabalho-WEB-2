@@ -8,7 +8,6 @@ app.engine("mustache", engine);
 
 // Rotas
 var paginas = require('./routes/index');
-//var propostaRouter = require('./routes/proposta');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -18,6 +17,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'mustache');
 
 app.use('/', paginas);
-//app.use('/proposta', propostaRouter)
 
 module.exports = app;
