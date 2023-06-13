@@ -22,15 +22,14 @@ router.post('/enviarEmail', (req, res) => {
         from: email, 
         to: 'gandreotti@alunos.utfpr.edu.br', 
         subject: assunto,
-        text: 'Usuário: ' + nome + '<br><br>Enviou: ' + mensagem
+        text: 'Usuário: ' + nome + 'Enviou: ' + mensagem
     };
 
     transporter.sendMail(options, (error, info) => {
         if (error) {
             console.log(error);
         } else {
-            console.log('E-mail enviado: ' + info.response);
-            res.send('E-mail enviado com sucesso!');
+            alert('E-mail enviado: ' + info.response);
         }
     });
 });
@@ -49,5 +48,12 @@ router.get('/sobre', function(req, res, next){
 router.get('/contato', function(req, res, next){
     res.render('contato');
 });
+
+// Página de de tecnologias.
+router.get('/tecnologias', function(req, res, next){
+    res.render('tecnologias');
+});
+
+
 
 module.exports = router;

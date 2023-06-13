@@ -89,12 +89,12 @@ body {
   color: white;
 }
 
-ul {
+header ul {
   list-style-type: none;
   padding: 0px;
   margin: 0px;
 }
-li {
+header li {
   float: left;
   flex-direction: row;
   padding: 10px;
