@@ -1,4 +1,13 @@
 # Trabalho-WEB-2
-Trabalho final da matéria de web 2 da UTFPR - CP
+Final Project for Web 2 Course at UTFPR - CP
 
-O arquivo .env é onde está localizado a porta do app assim como o login de adm.
+The .env file contains the app's port information as well as the admin login.
+
+HOW TO RUN:
+
+npm install
+
+THEN:
+
+npm start
+
