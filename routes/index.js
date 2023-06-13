@@ -54,6 +54,20 @@ router.get('/tecnologias', function(req, res, next){
     res.render('tecnologias');
 });
 
+router.get('/sobremim', function(req, res, next){
+    
+    const data = {
+        nome: "Guilherme Chizzolini Andreotti",
+        idade: 21,
+        curso: "Engenharia de Software, Periodo 7",
+        tecnologias: ["HTML", "CSS", "JavaScript", "React", "React Native", "Nest", "SQL", "C e C++", "JUnit"],
+        sobre: "Olá! Tudo bem? Atualmente eu estou tentando me adaptar a nova rotina de faculdade e trabalho mas estou sempre tentando melhorar!"
+    };
+
+    res.render('sobremim', data);
+});
+
+
 
 
 module.exports = router;
