@@ -39,6 +39,11 @@ router.get('/', function(req, res, next){
     res.render('login');
 });
 
+router.get('/cadastro', function(req, res, next){
+    res.render('cadastro');
+});
+
+
 // Página Sobre
 router.get('/sobre', function(req, res, next){
     res.render('proposta');

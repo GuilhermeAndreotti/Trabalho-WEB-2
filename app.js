@@ -5,8 +5,9 @@ var app = express();
 var mustacheExpress = require("mustache-express");
 var engine = mustacheExpress();
 app.engine("mustache", engine);
+const jwt = require('jsonwebtoken')
 
-// Rotas
+var apiUsers = require('./routes/users');
 var paginas = require('./routes/index');
 
 app.use(express.json());
@@ -17,5 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'mustache');
 
 app.use('/', paginas);
+app.use('/apiUsers', apiUsers);
 
 module.exports = app;

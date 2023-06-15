@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title>Página de Login</title>
+    <title>Realizar Cadastro</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="javascripts/usuarioControle.js" type="module"></script>
     <link rel="stylesheet" href="stylesheets/login.css">
-
 </head>
 <body>
     <header class="blue-background">
@@ -33,15 +32,21 @@
             </div>        
         </div>
         <div class="div-login">
-            <div class="container">
-                <label for="uname"><b class="texto-titulo">Email: </b></label>
-                <input type="text" placeholder="Insira o Email" name="login" required>
-            
-                <label for="psw"><b class="texto-titulo">Senha: </b></label>
-                <input type="password" placeholder="Insira a senha" name="senha" required>
-            
-                <button type="submit">Login</button>
-                <a class="texto-titulo" href="/cadastro"> Criar uma conta </a>
+            <div class="container" style="margin-top: 120px;">
+                <form id="formCadUser" action="/usuarios/cadastrar" method="POST">
+                    <label for="uname"><b class="texto-titulo">Nome : </b></label>
+                    <input type="text" placeholder="Insira o nome..." name="nomecad" required>
+
+                    <label for="uname"><b class="texto-titulo">Insira a idade : </b></label>
+                    <input type="number" placeholder="Insira a idade..." name="idadecad" required>
+
+                    <label for="uname"><b class="texto-titulo">Email para cadastro: </b></label>
+                    <input type="text" placeholder="Insira o Email..." name="logincad" required>
+                
+                    <label for="psw"><b class="texto-titulo">Senha para cadastro: </b></label>
+                    <input type="password" placeholder="Insira a senha..." name="senhacad" required>
+                </form>
+                <button id="cadastrarBtn">Cadastrar</button>
               </div>
         </div>
     </div>
