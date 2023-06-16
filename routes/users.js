@@ -6,6 +6,7 @@ router.post('/cadastrar', async (req, res) => {
     try {
         const { nome, idade, email, senha } = req.body;
         const token = await usuariobd.cadastrarUsuario(nome, idade, email, senha);
+        req.session.token = token;
         res.json(token)
 
     } catch (error) {

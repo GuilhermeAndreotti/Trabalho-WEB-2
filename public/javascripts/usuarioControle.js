@@ -1,5 +1,12 @@
 import usuarioService from "./usuarioService.js"
 
+
+const validaCampos = async () => {
+
+    
+}
+
+// Cadastrar
 const cadastrar = async () => {
 
     const nome = document.querySelector('input[name="nomecad"]').value;
@@ -9,12 +16,13 @@ const cadastrar = async () => {
 
     let resultadoToken = await usuarioService.cadastrarUsuario(nome, idade, email, senha);
         
-    if (resultadoToken.errors) {
+    if(resultadoToken.errors){
         alert("Houve um erro!");
     } else {
         alert("Cadastrado com sucesso!");
-    }
-
+        window.location.href = "http://localhost:3100/main/principal";
+    }       
+ 
 }
 
 window.onload = () => {

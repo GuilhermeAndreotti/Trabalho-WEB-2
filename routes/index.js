@@ -43,7 +43,6 @@ router.get('/cadastro', function(req, res, next){
     res.render('cadastro');
 });
 
-
 // Página Sobre
 router.get('/sobre', function(req, res, next){
     res.render('proposta');
@@ -71,8 +70,5 @@ router.get('/sobremim', function(req, res, next){
 
     res.render('sobremim', data);
 });
-
-
-
 
 module.exports = router;
