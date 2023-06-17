@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="javascripts/usuarioControle.js" type="module"></script>
     <link rel="stylesheet" href="stylesheets/login.css">
 
 </head>
@@ -34,13 +35,14 @@
         </div>
         <div class="div-login">
             <div class="container">
-                <label for="uname"><b class="texto-titulo">Email: </b></label>
-                <input type="text" placeholder="Insira o Email" name="login" required>
-            
-                <label for="psw"><b class="texto-titulo">Senha: </b></label>
-                <input type="password" placeholder="Insira a senha" name="senha" required>
-            
-                <button type="submit">Login</button>
+                <form id="formLogInUser" action="/usuarios/logar" method="POST">
+                    <label for="uname"><b class="texto-titulo">Email: </b></label>
+                    <input type="text" placeholder="Insira o Email" name="logincad" required>
+                
+                    <label for="psw"><b class="texto-titulo">Senha: </b></label>
+                    <input type="password" placeholder="Insira a senha" name="senhacad" required>
+                </form>
+                <button id="logarBtn"> Logar </button>
                 <a class="texto-titulo" href="/cadastro"> Criar uma conta </a>
               </div>
         </div>

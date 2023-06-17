@@ -1,5 +1,20 @@
 import usuarioService from "./usuarioService.js"
 
+const getNome = () => {
+    return document.querySelector('input[name="nomecad"]').value;
+  };
+  
+  const getIdade = () => {
+    return document.querySelector('input[name="idadecad"]').value;
+  };
+  
+  const getEmail = () => {
+    return document.querySelector('input[name="logincad"]').value;
+  };
+  
+  const getSenha = () => {
+    return document.querySelector('input[name="senhacad"]').value;
+};
 
 const validaCampos = async () => {
 
@@ -9,25 +24,41 @@ const validaCampos = async () => {
 // Cadastrar
 const cadastrar = async () => {
 
-    const nome = document.querySelector('input[name="nomecad"]').value;
-    const idade = document.querySelector('input[name="idadecad"]').value;
-    const email = document.querySelector('input[name="logincad"]').value;
-    const senha = document.querySelector('input[name="senhacad"]').value;
-
-    let resultadoToken = await usuarioService.cadastrarUsuario(nome, idade, email, senha);
+    let resultadoToken = await usuarioService.cadastrarUsuario(getNome(), getNome(), getEmail(), getSenha());
         
     if(resultadoToken.errors){
-        alert("Houve um erro!");
+        alert("Houve um erro!" + errors);
     } else {
         alert("Cadastrado com sucesso!");
         window.location.href = "http://localhost:3100/main/principal";
     }       
- 
 }
+
+//Logar
+const logar = async () => {
+
+    let resultadoToken = await usuarioService.logarUsuario(getEmail(), getSenha());
+        
+    if(resultadoToken.errors){
+        alert("Houve um erro!");
+    } else {
+        alert("Logando...");
+        window.location.href = "http://localhost:3100/main/principal";
+    }       
+}
+
+
 
 window.onload = () => {
 
     const cadastrarButton = document.getElementById('cadastrarBtn');
-    cadastrarButton.addEventListener('click', cadastrar);
+    if (cadastrarButton) {
+      cadastrarButton.addEventListener('click', cadastrar);
+    }
+  
+    const logarButton = document.getElementById('logarBtn');
+    if (logarButton) {
+      logarButton.addEventListener('click', logar);
+    }
 
 }
