@@ -5,13 +5,71 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../stylesheets/login.css">
+    <style>
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+          }
+          
+          nav ul li {
+            display: inline-block;
+            position: relative;
+          }
+          
+          nav ul li a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: white;
+          }
+          
+          nav ul li:hover > ul {
+            display: block;
+          }
+          
+          nav ul ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #0850ae;
+            padding: 0;
+          }
+          
+          nav ul ul li {
+            display: block;
+          }
+          
+          nav ul ul li a {
+            padding: 10px 20px;
+          }
+          
+          nav ul ul li a:hover {
+            background-color: gainsboro;
+          }
+    </style>
 </head>
 <body>
     <header class="blue-background">
         <div class="logo">
-            <img src="images/logo.png" alt="Swordplay Logo" class="logoimg">
+            <img src="../images/logo.png" alt="Swordplay Logo" class="logoimg">
             <a class="texto-titulo" href="/">Swordplay - CP</a>
         </div>
+        <nav>
+            <ul class="menu">
+              <li><a href="/main/meuperfil"> Meu Perfil </a></li>
+              <li><a href="#"> Cadastrar </a>
+                <ul class="submenu">
+                  <li><a href="#"> Participantes </a></li>
+                  <li><a href="#"> Treino </a></li>
+                  <li><a href="#"> Jogos </a></li>
+                  <li><a href="#"> Treinamento </a></li>
+                </ul>
+              </li>
+              <li><a href="#">Deslogar</a></li>
+            </ul>
+          </nav>
     </header>
     
     <div class="div-conteudo">

@@ -47,29 +47,24 @@ module.exports = {
   },
 
   logarUsuario: async function (email, senha) {
-    try {
-      const usuario = await usuarioModel.findOne({ where: { email } });
+    
+    try {  
+      const usuario = await modeloUsuario.findOne({ where: { email } });
 
-      if (!usuario) {
-        return new Error("Usuário não encontrado.");
+      if (!usuario){
+        return null;
       }
 
-      const senhavalida = await bcrypt.compare(senha, usuario.senha);
-      
-      if (!senhavalida) {
-        return new Error("Senha incorreta.");
+      const senhavalida = await bcrypt.compare(senha, usuario.password);
+
+      if (!senhavalida){
+        return null;
       }
 
-      const token = jwt.sign(
-        { usuario: usuario.dataValues },
-        process.env.permissaojwt,
-        { expiresIn: "1h" }
-      );
-
-      return token;
+      return usuario;
 
     } catch (error) {
-      return error;
+      return null; 
     }
   },
 };

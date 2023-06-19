@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../stylesheets/login.css">
+    <style>
+      nav ul {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+        }
+        
+        nav ul li {
+          display: inline-block;
+          position: relative;
+        }
+        
+        nav ul li a {
+          display: block;
+          padding: 10px 20px;
+          text-decoration: none;
+          color: white;
+        }
+        
+        nav ul li:hover > ul {
+          display: block;
+        }
+        
+        nav ul ul {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background-color: #0850ae;
+          padding: 0;
+        }
+        
+        nav ul ul li {
+          display: block;
+        }
+        
+        nav ul ul li a {
+          padding: 10px 20px;
+        }
+        
+        nav ul ul li a:hover {
+          background-color: gainsboro;
+        }
+  </style>
+</head>
+<body>
+  <header class="blue-background">
+      <div class="logo">
+          <img src="../images/logo.png" alt="Swordplay Logo" class="logoimg">
+          <a class="texto-titulo" href="/">Swordplay - CP</a>
+      </div>
+      <nav>
+          <ul class="menu">
+            <li><a href="/main/meuperfil"> Meu Perfil </a></li>
+            <li><a href="#"> Cadastrar </a>
+              <ul class="submenu">
+                <li><a href="#"> Participantes </a></li>
+                <li><a href="#"> Treino </a></li>
+                <li><a href="#"> Jogos </a></li>
+                <li><a href="#"> Treinamento </a></li>
+              </ul>
+            </li>
+            <li><a href="#">Deslogar</a></li>
+          </ul>
+        </nav>
+  </header>
+    
+    <div class="div-conteudo">
+      <div class="div-login">
+        <div class="container" style="margin-top: 80px;">
+          <h1> <center> 
+            <b class="texto-titulo" style="color:white; font-size: 28px;">
+              Meu Perfil  
+            </b> 
+          </center> </h1>
+            <form id="formCadUser" action="/usuarios/cadastrar" method="POST">
+                <label for="uname"><b class="texto-titulo">{{ usuario.nome }} </b></label>
+                <input type="text" placeholder="Insira o nome..." name="nomecad" value="" required>
+
+                <label for="uname"><b class="texto-titulo">Insira a idade : </b></label>
+                <input type="number" placeholder="idade" name="idadecad" required>
+
+                <label for="uname"><b class="texto-titulo">Email para cadastro: </b></label>
+                <input type="text" placeholder="email" name="logincad" required>
+            
+                <label for="psw"><b class="texto-titulo">Senha para cadastro: </b></label>
+                <input type="password" placeholder="senha" name="senhacad" required>
+            </form>
+            <center>
+              <button id="cadastrarBtn">Editar</button>
+              <button id="cadastrarBtn">Excluir</button>
+            </center>
+          </div>
+      </div>   
+    </div>
+    
+    <footer class="blue-background">
+        Swordplay - CP || @swordplaycputfpr
+    </footer>
+</body>
+</html>
