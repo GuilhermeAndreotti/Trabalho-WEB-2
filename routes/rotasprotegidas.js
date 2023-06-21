@@ -1,26 +1,15 @@
 const express = require("express");
 const usuariobd = require("../models/usuariobd");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
 
-const validaLogin = (req, res, next) => {
-    if (req.session.token) {
-      return next();
-    }else{
-      res.redirect('/');
-    }
-};
-
-router.get('/principal', validaLogin, function(req, res, next){
-    res.render('principal');
+router.get('/principal', function(req, res, next){
+    res.render('principal',{ token: req.query.token});
 });
 
-router.get('/', function(req, res, next){
-    res.render('login');
+router.get('/meuperfil', function(req, res, next){
+  res.render('meuperfil', { token: req.query.token, usuario: req.usuario });
 });
 
-router.get('/meuperfil', validaLogin, function(req, res, next){
-  const usuario = req.session.usuario;
-  res.render('meuperfil', { usuario });
-});
 
 module.exports = router;

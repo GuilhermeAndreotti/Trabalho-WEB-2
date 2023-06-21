@@ -2,6 +2,11 @@ var express = require('express');
 var router = express.Router();
 require('dotenv').config();
 const nodemailer = require('nodemailer');
+const usuariobd = require("../models/usuariobd");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+// Rotas não protegidas.
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -71,4 +76,32 @@ router.get('/sobremim', function(req, res, next){
     res.render('sobremim', data);
 });
 
+router.post("/logar", async (req, res) => {
+    try {
+      const { email, senha } = req.body;
+      const token = await usuariobd.logarUsuario(email, senha);  
+      res.json(token);
+    } catch (error) {
+      res.status(500).json({ error: "Erro ao logar com o usuário." });
+    }
+  });
+  
+router.post("/cadastrar", async (req, res) => {
+    try {
+      const { nome, idade, email, senha } = req.body;
+  
+      const criptosenha = await bcrypt.hash(senha, 10);
+      const token = await usuariobd.cadastrarUsuario(nome,idade,email,criptosenha);
+      res.json(token);
+  
+    } catch (error) {
+      res.status(500).send({ error: "Erro ao cadastrar usuário." });
+    }
+});
+
+router.get("/logout", (req, res) =>{
+    //sessionStorage.removeItem('token');
+    res.redirect('/');
+});
+  
 module.exports = router;

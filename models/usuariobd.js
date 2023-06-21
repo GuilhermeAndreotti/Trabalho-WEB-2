@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../BancoDeDados/connection");
 const jwt = require("jsonwebtoken");
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
 const modeloUsuario = sequelize.define("Usuario", {
   nome: {
@@ -26,6 +26,7 @@ const modeloUsuario = sequelize.define("Usuario", {
 modeloUsuario.sync({ force: false });
 
 module.exports = {
+  
   cadastrarUsuario: async function (nome, idade, email, senha) {
     try {
       const resultado = await modeloUsuario.create({
@@ -38,33 +39,86 @@ module.exports = {
       const token = jwt.sign(
         { usuario: resultado.dataValues },
         process.env.permissaojwt,
-        {expiresIn: "1h"}
+        { expiresIn: "1h" }
       );
+
       return token;
+
     } catch (error) {
       return error;
     }
   },
-
+  
   logarUsuario: async function (email, senha) {
-    
-    try {  
+    try {
       const usuario = await modeloUsuario.findOne({ where: { email } });
-
-      if (!usuario){
-        return null;
+      
+      if (!usuario) {
+        return { errors: "Usuário não encontrado" };
       }
-
+      
       const senhavalida = await bcrypt.compare(senha, usuario.password);
 
-      if (!senhavalida){
-        return null;
-      }
+      if (!senhavalida) {
+        return { errors: "Senha inválida" };
+      } 
+      
+      const token = jwt.sign(
+        { usuario: usuario.dataValues },
+        process.env.permissaojwt,
+        { expiresIn: "1h" }
+      );
 
-      return usuario;
+      return token;
 
     } catch (error) {
-      return null; 
+      return { errors: "Erro ao autenticar usuário" };
     }
   },
+
+
+  editarUsuario: async function (id, nome, idade, email, senha) {
+    try {
+      const usuario = await modeloUsuario.findByPk(id);
+  
+      if (!usuario) {
+        return { errors: "Usuário não encontrado..." };
+      } else {
+        usuario.nome = nome;
+        usuario.idade = idade;
+        usuario.email = email;
+        if (senha) {
+          usuario.password = senha;
+        }
+
+        const token = jwt.sign(
+          { usuario: usuario.dataValues },
+          process.env.permissaojwt,
+          { expiresIn: "1h" }
+        );
+  
+        await usuario.save();
+  
+        return token;
+      }
+    } catch (error) {
+      return { errors: "Houve um erro..." };
+    }
+  },
+
+  excluirUsuario: async function (id) {
+    
+    console.log('excluiu = ' + id);
+
+    try {
+      const deletarUser = await modeloUsuario.destroy({ where: { id } });
+      console.log('excluiu');
+      if(!deletarUser){
+        return { errors: "Houve um erro ao excluir..." };
+      }
+
+    } catch (error) {
+      return { errors: "Houve um erro..." };
+    }
+  }
 };

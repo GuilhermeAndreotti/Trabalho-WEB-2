@@ -1,5 +1,10 @@
 import usuarioService from "./usuarioService.js"
 
+
+const getId = () => {
+  return document.getElementById('id').value;
+};
+
 const getNome = () => {
   return document.querySelector('input[name="nomecad"]').value;
 };
@@ -33,7 +38,6 @@ const validaEmail = () => {
     console.log("Email inválido");
     return false;
   }
-  
   return true;
 };
 
@@ -48,10 +52,11 @@ const cadastrar = async () => {
     );
 
     if (resultadoToken.errors) {
-      alert("Houve um erro!" + resultadoToken.errors);
+      alert("Email já está em uso.");
     } else {
       alert("Cadastrado com sucesso!");
-      window.location.href = "http://localhost:3100/main/principal";
+      sessionStorage.setItem("token", resultadoToken);
+      window.location.href = "http://localhost:3100/main/principal?token="+resultadoToken;
     }
   } else {
     alert("Cadastro inválido!");
@@ -60,18 +65,61 @@ const cadastrar = async () => {
 
 //Logar
 const logar = async () => {
-
+  
   let resultadoToken = await usuarioService.logarUsuario(getEmail(), getSenha());
-      
+
   if(resultadoToken.errors){
-      alert("Houve um erro!");
+      alert(JSON.stringify(resultadoToken.errors));
   } else {
       alert("Logando...");
-      window.location.href = "http://localhost:3100/main/principal";
+      sessionStorage.setItem("token", resultadoToken);
+      window.location.href = "http://localhost:3100/main/principal?token="+resultadoToken;
   }       
 }
 
+// Editar
+const editar = async () => {
+  
+  if (validaEmail() && validaIdade()) {
+    
+    let resultadoToken = await usuarioService.editarUsuario(
+      getId(),
+      getNome(),
+      getIdade(),
+      getEmail(),
+      getSenha()
+    );
 
+    if (resultadoToken.errors) {
+      alert("Houve um erro!" + resultadoToken.errors);
+    } else {
+      alert("Dados editados com sucesso!");
+      sessionStorage.setItem("token", resultadoToken);
+      console.log('token')
+      window.location.href = "http://localhost:3100/main/principal?token="+resultadoToken;
+    }
+  } else {
+    alert("Houve um erro ao editar, verifique os campos!");
+  }     
+}
+
+// Excluir
+const excluir = async () => {
+  
+  const token = sessionStorage.getItem("token")
+
+  let resultadoToken = await usuarioService.excluirUsuario(
+    getId(), token
+  );
+
+  if(resultadoToken.erros){
+    alert("Houve um erro ao excluir, tente novamente...")
+  }else{
+    alert("Usuário excluido com sucesso... nunca é um adeus...")
+    window.location.href = "http://localhost:3100";
+  }
+  
+}
 
 window.onload = () => {
 
@@ -83,6 +131,16 @@ window.onload = () => {
     const logarButton = document.getElementById('logarBtn');
     if (logarButton) {
       logarButton.addEventListener('click', logar);
+    }
+
+    const editarButton = document.getElementById('editarBtn');
+    if (editarButton) {
+      editarButton.addEventListener('click', editar);
+    }
+
+    const excluirButton = document.getElementById('excluirBtn');
+    if (excluirButton) {
+      excluirButton.addEventListener('click', excluir);
     }
 
 }

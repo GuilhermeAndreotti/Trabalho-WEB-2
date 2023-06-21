@@ -22,14 +22,28 @@ app.set(express.static(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'mustache');
 
-app.use(session({
-    secret: process.env.chavesecreta,
-    resave: false,
-    saveUninitialized: false,
-}));
+const validaLogin = (req, res, next) => {     
+    
+    let token = req.query.token;
+    if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+      token = req.headers.authorization.split(' ')[1];
+    }
+    if (!token) {
+      return res.status(401).json({ errors: 'Token não fornecido' });
+    }
+    jwt.verify(token, process.env.permissaojwt, (error, decoded) => {
+      if (!error) {
+          req.usuario = decoded.usuario
+          return next()
+      } else {
+          res.redirect("/")
+      }
+    })
+    
+};
 
 app.use('/', paginas);
-app.use('/apiUsers', apiUsers);
-app.use('/main', paginasp);
+app.use('/apiUsers', validaLogin, apiUsers);
+app.use('/main', validaLogin, paginasp);
 
 module.exports = app;
