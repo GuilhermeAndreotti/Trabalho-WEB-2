@@ -25,7 +25,7 @@ const modeloUsuario = sequelize.define("Usuario", {
 
 modeloUsuario.sync({ force: false });
 
-module.exports = {
+module.exports = { modeloUsuario,
   
   cadastrarUsuario: async function (nome, idade, email, senha) {
     try {

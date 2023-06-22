@@ -2,6 +2,7 @@ const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../BancoDeDados/connection");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const { modeloUsuario } = require("./usuariobd");
 
 const modeloJogo = sequelize.define("Jogo", {
   
@@ -24,6 +25,8 @@ const modeloJogo = sequelize.define("Jogo", {
 });
 
 modeloJogo.sync({ force: false });
+
+modeloJogo.belongsTo(modeloUsuario, { foreignKey: "fk_id" });
 
 module.exports = {
   
