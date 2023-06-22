@@ -84,7 +84,7 @@ router.post("/logar", async (req, res) => {
     } catch (error) {
       res.status(500).json({ error: "Erro ao logar com o usuário." });
     }
-  });
+});
   
 router.post("/cadastrar", async (req, res) => {
     try {

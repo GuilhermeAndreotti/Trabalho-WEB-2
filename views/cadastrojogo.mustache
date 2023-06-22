@@ -4,7 +4,8 @@
     <title>Home</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../stylesheets/login.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <script src="/javascripts/jogoControle.js" type="module"></script>
     <style>
         nav ul {
             list-style-type: none;
@@ -53,7 +54,7 @@
 <body>
     <header class="blue-background">
         <div class="logo">
-            <img src="../images/logo.png" alt="Swordplay Logo" class="logoimg">
+            <img src="/images/logo.png" alt="Swordplay Logo" class="logoimg">
             <a class="texto-titulo" href="/">Swordplay - CP</a>
         </div>
         <nav>
@@ -61,7 +62,7 @@
               <li><a href="/main/meuperfil/?token={{token}}"> Meu Perfil </a></li>
               <li><a href="#"> Cadastrar </a>
                 <ul class="submenu">
-                  <li><a href="/main/cadastrarjogo/?token={{token}}"> Jogos </a></li>
+                  <li><a href="#"> Jogos </a></li>
                   <li><a href="#"> Treino </a></li>
                   <li><a href="#"> Treinamento </a></li>
                 </ul>
@@ -69,12 +70,39 @@
               <li><a href="/logout">Deslogar</a></li>
             </ul>
           </nav>
-    </header>
-    
+    </header>  
     <div class="div-conteudo">
-        .
+        <div class="div-proposta">
+            <div class="oq-texto">
+                  tabela com os cadastros atuais
+            </div>        
+        </div>
+        <div class="div-login">
+            <div class="container" style="margin-top: 100px;">              
+                <form id="formCadJogos" action="/jogos/cadastrarJogos" method="POST">
+                    
+                    <input type="text" id="id" value="{{ usuario }}">
+
+                    <label for="uname"><b class="texto-titulo"> Nome do jogo: </b></label>
+                    <input type="text" placeholder="Insira o nome..." name="jogonome" required>
+
+                    <label for="uname"><b class="texto-titulo">Modalidade: </b></label>
+                    <br>
+                    <select class="menuOpcoes" id="modalidade">
+                        <option value="hitkill"> Hit Kil - Individual </option>
+                        <option value="pontos"> 2 Pontos - Individual </option>
+                        <option value="pontos"> 2 Pontos - Equipes </option>
+                        <option value="pontos"> Hit Kill - Equipes </option>
+                    </select> 
+                    <br>
+                    <label for="psw"><b class="texto-titulo"> Descrição do jogo: </b></label>
+                    <textarea class="descricao" rows="10" cols="50" id="descricao"></textarea>     
+                </form>
+
+                <button id="cadastrarBtn"> Cadastrar sua idéia! </button>
+            </div>
+        </div>
     </div>
-    
     <footer class="blue-background">
         Swordplay - CP || @swordplaycputfpr
     </footer>

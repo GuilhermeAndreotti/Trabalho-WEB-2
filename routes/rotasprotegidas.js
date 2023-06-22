@@ -11,5 +11,9 @@ router.get('/meuperfil', function(req, res, next){
   res.render('meuperfil', { token: req.query.token, usuario: req.usuario });
 });
 
+router.get('/cadastrarjogo', function(req, res, next){
+  res.render('cadastrojogo',{ token: req.query.token, usuario: req.usuario.id});
+});
+
 
 module.exports = router;

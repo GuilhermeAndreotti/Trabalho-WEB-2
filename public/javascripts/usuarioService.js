@@ -51,7 +51,6 @@ let usuarioService = {
 
     excluirUsuario: async function (id) {
 
-        console.log("id = " + id)
         const token = sessionStorage.getItem("token");
         const data = {
             method: "DELETE",

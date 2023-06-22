@@ -76,7 +76,6 @@ module.exports = {
     }
   },
 
-
   editarUsuario: async function (id, nome, idade, email, senha) {
     try {
       const usuario = await modeloUsuario.findByPk(id);
@@ -107,9 +106,6 @@ module.exports = {
   },
 
   excluirUsuario: async function (id) {
-    
-    console.log('excluiu = ' + id);
-
     try {
       const deletarUser = await modeloUsuario.destroy({ where: { id } });
       console.log('excluiu');
@@ -121,4 +117,5 @@ module.exports = {
       return { errors: "Houve um erro..." };
     }
   }
+
 };
