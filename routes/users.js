@@ -9,14 +9,11 @@ router.put("/editar", async (req, res) => {
   try {
     const { id, nome, idade, email, senha } = req.body;
     let criptosenha = null;
-    console.log('senha da rota = ' + senha);
     
     if (senha !== null && senha !== '') {
       criptosenha = await bcrypt.hash(senha, 10);
     }
     
-    console.log('senha da rota = ' + criptosenha);
-
     const token = await usuariobd.editarUsuario(
       id,
       nome,

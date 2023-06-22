@@ -47,8 +47,22 @@
           }
           
           nav ul ul li a:hover {
-            background-color: gainsboro;
+            background-color: white;
           }
+          table {
+            border-collapse: collapse;
+            width: 100%;
+          }
+
+          th, td {
+            text-align: left;
+            padding: 8px;
+          }
+        tr:nth-child(even){background-color: #f2f2f2}
+        th {
+            background-color: #0850ae;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -64,7 +78,6 @@
                 <ul class="submenu">
                   <li><a href="#"> Jogos </a></li>
                   <li><a href="#"> Treino </a></li>
-                  <li><a href="#"> Treinamento </a></li>
                 </ul>
               </li>
               <li><a href="/logout">Deslogar</a></li>
@@ -72,16 +85,27 @@
           </nav>
     </header>  
     <div class="div-conteudo">
-        <div class="div-proposta">
+        <div class="div-proposta" style="margin-top: 0px;"> 
             <div class="oq-texto">
-                  tabela com os cadastros atuais
+              <table id="jogosTable">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Modalidade</th>
+                    <th>Descrição</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
             </div>        
         </div>
         <div class="div-login">
             <div class="container" style="margin-top: 100px;">              
                 <form id="formCadJogos" action="/jogos/cadastrarJogos" method="POST">
                     
-                    <input type="text" id="id" value="{{ usuario }}">
+                    <input type="hidden" id="id" value="{{ usuario }}">
 
                     <label for="uname"><b class="texto-titulo"> Nome do jogo: </b></label>
                     <input type="text" placeholder="Insira o nome..." name="jogonome" required>
@@ -89,13 +113,11 @@
                     <label for="uname"><b class="texto-titulo">Modalidade: </b></label>
                     <br>
                     <select class="menuOpcoes" id="modalidade">
-                        <option value="hitkill ind"> Hit Kil - Individual </option>
-                        <option value="pontos ind"> 2 Pontos - Individual </option>
-                        <option value="pontos equipe"> 2 Pontos - Equipes </option>
-                        <option value="hitkill equipe"> Hit Kill - Equipes </option>
+                        <option value="individual"> Individual </option>
+                        <option value="equipes"> Equipes </option>
                     </select> 
                     <br>
-                    <label for="psw"><b class="texto-titulo"> Descrição do jogo: </b></label>
+                    <label for="psw"><b class="texto-titulo"> Descrição do jogo (Regras e como irá funcionar): </b></label>
                     <textarea class="descricao" rows="10" cols="50" id="descricao"></textarea>     
                 </form>
 

@@ -5,20 +5,19 @@ const bcrypt = require("bcryptjs");
 const { modeloUsuario } = require("./usuariobd");
 
 const modeloJogo = sequelize.define("Jogo", {
-  
-  fk_id: {
+  fk_id:{
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  nome: {
+  nome:{
     type: DataTypes.STRING,
     allowNull: false,
   },
-  modalidade: {
+  modalidade:{
     type: DataTypes.STRING,
     allowNull: false,
   },
-  descricao: {
+  descricao:{
     type: DataTypes.STRING,
     allowNull: false,
   },
@@ -31,7 +30,6 @@ modeloJogo.belongsTo(modeloUsuario, { foreignKey: "fk_id" });
 module.exports = {
   
   cadastrarJogos: async function (id, nome, modadlidade, descricao) {
-    console.log("cheguei aqui bd com id =" + id)
     try {
       const resultado = await modeloJogo.create({
         fk_id: id,
@@ -39,8 +37,22 @@ module.exports = {
         modalidade: modadlidade,
         descricao: descricao,
       });
+      return resultado;
     } catch (error) {
       return error;
+    }
+  },
+
+  listarJogos: async function (id) {
+    
+    try {
+      const alljogos = await modeloJogo.findAll({
+        where: { fk_id: id },
+      });
+      return alljogos;
+
+    } catch (error) {
+      throw error;
     }
   },
 

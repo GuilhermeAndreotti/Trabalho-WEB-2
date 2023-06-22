@@ -37,8 +37,44 @@ const cadastrar = async () => {
     }
 };
 
+const lerJogos = async () => {
+  const token = sessionStorage.getItem("token");
+
+  let resultado = await jogoService.listarJogos(getId(), token);
+
+  if (resultado.errors) {
+    alert(JSON.stringify(resultado.errors));
+  } else {
+    const tabela = document.querySelector('#jogosTable tbody');
+    tabela.innerHTML = '';
+
+    resultado.forEach(jogo => {
+      
+      const criaTR = document.createElement('tr');
+      const idJogo = document.createElement('td');
+      const nomeJogo = document.createElement('td');
+      const modalidade = document.createElement('td');
+      const descricao = document.createElement('td');
+
+      idJogo.textContent = jogo.id;
+      nomeJogo.textContent = jogo.nome;
+      modalidade.textContent = jogo.modalidade;
+      descricao.textContent = jogo.descricao;
+      
+      criaTR.appendChild(idJogo);
+      criaTR.appendChild(nomeJogo);  
+      criaTR.appendChild(modalidade);
+      criaTR.appendChild(descricao);
+
+      tabela.appendChild(criaTR);
+    });
+  }
+};
+
 
 window.onload = () => {
+
+    lerJogos();
 
     const cadastrarButton = document.getElementById('cadastrarBtn');
     if (cadastrarButton) {
