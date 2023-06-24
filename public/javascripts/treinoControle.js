@@ -6,12 +6,12 @@ const getId = () => {
   return document.getElementById('id').value;
 };
 
-const getNome = () => {
-  return document.querySelector('input[name="jogonome"]').value;
+const getData = () => {
+  return document.querySelector('input[name="treino"]').value;
 };
 
-const getModalidade = () => {
-    let select = document.getElementById("modalidade");
+const getEtapa = () => {
+    let select = document.getElementById("etapa");
     return select.value;
 };
 
@@ -27,7 +27,14 @@ const lerJogos = async () => {
     if (resultado.errors) {
       alert(JSON.stringify(resultado.errors));
     } else {
-
+        const selectJogo = document.getElementById('jogopassado');
+        resultado.forEach((jogo) =>
+        {
+            const optionJogo = document.createElement('option');
+            optionJogo.value = jogo.id;
+            optionJogo.textContent = jogo.nome;
+            selectJogo.appendChild(optionJogo);
+        });
     }
 };
 
@@ -35,14 +42,6 @@ window.onload = () => {
 
     lerJogos();
 
-    const cadastrarButton = document.getElementById('cadastrarBtn');
-    if (cadastrarButton && cadastro == true){
-      cadastrarButton.addEventListener('click', cadastrar);
-    }
 
-    const editarButton = document.getElementById('editarBtn');
-    if (editarButton) {
-      editarButton.addEventListener('click', editar);
-    }
 
 }

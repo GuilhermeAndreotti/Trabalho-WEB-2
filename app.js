@@ -44,7 +44,7 @@ const validaLogin = (req, res, next) => {
 app.use('/', paginas);
 app.use('/apiUsers', validaLogin, apiUsers);
 app.use('/apiJogos',validaLogin, apiJogos);
-app.use('/main', validaLogin, paginasp);
+app.use('/swordplay', validaLogin, paginasp);
 
 
 module.exports = app;

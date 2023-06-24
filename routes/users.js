@@ -30,8 +30,7 @@ router.put("/editar", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     
     let { id } = req.params
-    let resultado = await usuariobd.excluirUsuario(id)
-    
+    let resultado = await usuariobd.excluirUsuario(id);
     res.json(resultado);
 
 });

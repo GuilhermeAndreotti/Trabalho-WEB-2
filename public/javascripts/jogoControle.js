@@ -34,7 +34,7 @@ const cadastrar = async () => {
       alert(JSON.stringify(resultado.erros));
     } else {
       alert("O cadastro foi realizado.");
-      window.location.href = "http://localhost:3100/main/cadastrarjogo?token="+token;
+      window.location.href = "/swordplay/cadastrarjogo?token="+token;
     }
 };
 
@@ -137,7 +137,7 @@ const excluirJogo = async (idJogo) => {
     alert("Houve um erro ao excluir, tente novamente...")
   }else{
     alert("Jogo excluído com sucesso.")
-    window.location.href = "http://localhost:3100/main/cadastrarjogo?token="+token;
+    window.location.href = "/swordplay/cadastrarjogo?token="+token;
   }
   
 }
@@ -175,7 +175,7 @@ const editar = async () => {
     } else {
       idJogo = -1;
       alert("Dados editados com sucesso!");
-      window.location.href = "http://localhost:3100/main/cadastrarjogo?token="+token;
+      window.location.href = "/swordplay/cadastrarjogo?token="+token;
     }
 } 
    

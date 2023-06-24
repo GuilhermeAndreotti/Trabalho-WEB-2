@@ -56,7 +56,7 @@ const cadastrar = async () => {
     } else {
       alert("Cadastrado com sucesso!");
       sessionStorage.setItem("token", resultadoToken);
-      window.location.href = "http://localhost:3100/main/principal?token="+resultadoToken;
+      window.location.href = "/swordplay/principal?token="+resultadoToken;
     }
   } else {
     alert("Cadastro inválido!");
@@ -73,7 +73,7 @@ const logar = async () => {
   } else {
       alert("Logando...");
       sessionStorage.setItem("token", resultadoToken);
-      window.location.href = "http://localhost:3100/main/principal?token="+resultadoToken;
+      window.location.href = "/swordplay/principal?token="+resultadoToken;
   }       
 }
 
@@ -95,7 +95,7 @@ const editar = async () => {
     } else {
       alert("Dados editados com sucesso!");
       sessionStorage.setItem("token", resultadoToken);
-      window.location.href = "http://localhost:3100/main/principal?token="+resultadoToken;
+      window.location.href = "/swordplay/principal?token="+resultadoToken;
     }
   } else {
     alert("Houve um erro ao editar, verifique os campos!");
