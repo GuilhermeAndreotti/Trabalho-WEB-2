@@ -1,7 +1,5 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../BancoDeDados/connection");
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcryptjs");
 const { modeloUsuario } = require("./usuariobd");
 
 const modeloJogo = sequelize.define("Jogo", {
@@ -53,6 +51,39 @@ module.exports = {
 
     } catch (error) {
       throw error;
+    }
+  },
+
+  excluirJogos: async function (id) {
+    try {
+      const deletarJogo = await modeloJogo.destroy({ where: { id } });
+      if(!deletarJogo){
+        return { errors: "Houve um erro ao excluir..." };
+      }
+      return true;
+
+    } catch (error) {
+      return { errors: "Houve um erro..." };
+    }
+  },
+
+  editarJogo: async function (id, nome, modalidade, descricao) {
+    try {
+      const jogo = await modeloJogo.findByPk(id);
+  
+      if (!jogo) {
+        return { errors: "Jogo não encontrado..." };
+      } else {
+          jogo.nome = nome;
+          jogo.modalidade = modalidade;
+          jogo.descricao = descricao;
+  
+          await jogo.save();
+  
+          return jogo;
+      }
+    } catch (error) {
+      return { errors: "Houve um erro..." };
     }
   },
 

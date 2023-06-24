@@ -108,10 +108,10 @@ module.exports = { modeloUsuario,
   excluirUsuario: async function (id) {
     try {
       const deletarUser = await modeloUsuario.destroy({ where: { id } });
-      console.log('excluiu');
       if(!deletarUser){
         return { errors: "Houve um erro ao excluir..." };
       }
+      return {resultado: true}
 
     } catch (error) {
       return { errors: "Houve um erro..." };

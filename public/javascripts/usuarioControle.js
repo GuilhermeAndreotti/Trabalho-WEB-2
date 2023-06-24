@@ -95,7 +95,6 @@ const editar = async () => {
     } else {
       alert("Dados editados com sucesso!");
       sessionStorage.setItem("token", resultadoToken);
-      console.log('token')
       window.location.href = "http://localhost:3100/main/principal?token="+resultadoToken;
     }
   } else {

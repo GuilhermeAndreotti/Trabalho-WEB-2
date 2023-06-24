@@ -57,20 +57,18 @@
           <img src="/images/logo.png" alt="Swordplay Logo" class="logoimg">
           <a class="texto-titulo" href="/">Swordplay - CP</a>
       </div>
-        <nav>
-          <ul class="menu">
-            <li><a href="/main/meuperfil/?token={{token}}"> Meu Perfil </a></li>
-            <li><a href="#"> Cadastrar </a>
-              <ul class="submenu">
-                <li><a href="#"> Participantes </a></li>
-                <li><a href="#"> Treino </a></li>
-                <li><a href="#"> Jogos </a></li>
-                <li><a href="#"> Treinamento </a></li>
-              </ul>
-            </li>
-            <li><a href="/logout">Deslogar</a></li>
-          </ul>
-        </nav>
+      <nav>
+        <ul class="menu">
+          <li><a href="/main/meuperfil/?token={{token}}"> Meu Perfil </a></li>
+          <li><a href="#"> Cadastrar </a>
+            <ul class="submenu">
+              <li><a href="/main/cadastrarjogo/?token={{token}}"> Jogos </a></li>
+              <li><a href="#"> Treino </a></li>
+            </ul>
+          </li>
+          <li><a href="/main/principal?token={{token}}">Voltar...</a></li>
+        </ul>
+      </nav>
   </header>
     
     <div class="div-conteudo">

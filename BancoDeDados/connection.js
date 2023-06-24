@@ -1,8 +1,15 @@
 const Sequelize = require("sequelize")
+require('dotenv').config();
 
-const sequelize = new Sequelize("swordplayweb2","root","asd123asd", {
-    host: "localhost", dialect: "mysql"
-})
+const sequelize = new Sequelize(
+    process.env.bancodedados,
+    process.env.usuario,
+    process.env.senhabd,
+    {
+        host: process.env.host, 
+        dialect: process.env.dialect
+    }
+)
 
 sequelize.authenticate().then(
     () => console.log("Conectado ao banco de dados")

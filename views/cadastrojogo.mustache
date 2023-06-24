@@ -55,7 +55,7 @@
           }
 
           th, td {
-            text-align: left;
+            text-align: center;
             padding: 8px;
           }
           tr:nth-child(even){background-color: #f2f2f2}
@@ -72,33 +72,36 @@
             <a class="texto-titulo" href="/">Swordplay - CP</a>
         </div>
         <nav>
-            <ul class="menu">
-              <li><a href="/main/meuperfil/?token={{token}}"> Meu Perfil </a></li>
-              <li><a href="#"> Cadastrar </a>
-                <ul class="submenu">
-                  <li><a href="#"> Jogos </a></li>
-                  <li><a href="#"> Treino </a></li>
-                </ul>
-              </li>
-              <li><a href="/logout">Deslogar</a></li>
-            </ul>
-          </nav>
+          <ul class="menu">
+            <li><a href="/main/meuperfil/?token={{token}}"> Meu Perfil </a></li>
+            <li><a href="#"> Cadastrar </a>
+              <ul class="submenu">
+                <li><a href="/main/cadastrarjogo/?token={{token}}"> Jogos </a></li>
+                <li><a href="#"> Treino </a></li>
+              </ul>
+            </li>
+            <li><a href="/main/principal?token={{token}}">Voltar...</a></li>
+          </ul>
+        </nav>
     </header>  
     <div class="div-conteudo">
         <div class="div-proposta" style="margin-top: 0px;"> 
             <div class="oq-texto">
-              <table id="jogosTable">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Modalidade</th>
-                    <th>Descrição</th>
-                  </tr>
-                </thead>
-                <tbody>
-                </tbody>
-              </table>
+              <div id="paginacao">
+                <table id="jogosTable">
+                  <thead>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Modalidade</th>
+                      <th>Descrição</th>
+                      <th>Editar</th>
+                      <th>Excluir</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+            </div>
             </div>        
         </div>
         <div class="div-login">
@@ -106,7 +109,7 @@
                 <form id="formCadJogos" action="/jogos/cadastrarJogos" method="POST">
                     
                     <input type="hidden" id="id" value="{{ usuario }}">
-
+           
                     <label for="uname"><b class="texto-titulo"> Nome do jogo: </b></label>
                     <input type="text" placeholder="Insira o nome..." name="jogonome" required>
 
@@ -121,7 +124,8 @@
                     <textarea class="descricao" rows="10" cols="50" id="descricao"></textarea>     
                 </form>
 
-                <button id="cadastrarBtn"> Cadastrar sua idéia! </button>
+                <button id="cadastrarBtn"> Cadastrar sua idéia! </button> 
+                <button id="editarBtn" style="display: none"> Editar! </button>
             </div>
         </div>
     </div>
