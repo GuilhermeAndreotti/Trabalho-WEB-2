@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title>Home</title>
+    <title>Treinos</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../stylesheets/login.css">
+    <link rel="stylesheet" href="/stylesheets/login.css">
     <style>
         nav ul {
             list-style-type: none;
@@ -62,16 +62,45 @@
               <li><a href="#"> Cadastrar </a>
                 <ul class="submenu">
                   <li><a href="/main/cadastrarjogo/?token={{token}}"> Jogos </a></li>
-                  <li><a href="/main/cadastrartreino/?token={{token}}"> Treino </a></li>
+                  <li><a href="#"> Treino </a></li>
                 </ul>
               </li>
-              <li><a href="/logout">Deslogar</a></li>
+              <li><a href="/main/principal?token={{token}}">Voltar...</a></li>
             </ul>
           </nav>
     </header>
     
     <div class="div-conteudo">
-        .
+        <div class="div-login">
+            <div class="container" style="margin-top: 60px;">              
+                <form id="formCadJogos">
+
+                    <input type="hidden" id="id" value="{{ usuario }}">
+           
+                    <label for="uname"><b class="texto-titulo"> Dia do treino: </b></label>
+                    <br>
+                    <input type="date" placeholder="Insira o nome..." name="treino" class="datatreino" required>
+                    <br>
+                    <label for="uname"><b class="texto-titulo"> Teve etapa no treino? </b></label>
+                    <br>
+                    <select class="menuOpcoes" id="modalidade">
+                        <option value="individual"> Sim </option>
+                        <option value="equipes"> Não </option>
+                    </select> 
+                    <br>
+                    <label for="uname"><b class="texto-titulo"> Qual jogo foi passado: </b></label><br>
+                    <select class="menuOpcoes" id="modalidade">
+
+                    </select> 
+                    <br>
+                    <label for="psw"><b class="texto-titulo"> Observações e/ou metas: </b></label>
+                    <textarea class="descricao" rows="10" cols="50" id="descricao"></textarea>     
+                </form>
+
+                <button id="cadastrarBtn"> Cadastrar! </button>
+            </div>
+        </div>
+    </div>
     </div>
     
     <footer class="blue-background">

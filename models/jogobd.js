@@ -19,7 +19,7 @@ const modeloJogo = sequelize.define("Jogo", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-});
+});   
 
 modeloJogo.sync({ force: false });
 

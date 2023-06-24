@@ -15,5 +15,11 @@ router.get('/cadastrarjogo', function(req, res, next){
   res.render('cadastrojogo',{ token: req.query.token, usuario: req.usuario.id});
 });
 
+router.get('/cadastrartreino', function(req, res, next){
+  res.render('cadastrotreino',{ token: req.query.token, usuario: req.usuario.id});
+});
+
+
+
 
 module.exports = router;

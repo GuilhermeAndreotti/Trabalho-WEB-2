@@ -88,6 +88,15 @@ input[type="password"] {
   border-radius: 15px;
 }
 
+.datatreino{
+  width: 40%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: none;
+  border-radius: 15px;
+}
+
 .menuOpcoes{
   width: 40%;
   padding: 12px 20px;

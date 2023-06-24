@@ -122,7 +122,6 @@ const lerJogos = async () => {
   } else {
     paginacao(resultado);
     exibirTable(resultado, 1);
-
   }
 };
 
