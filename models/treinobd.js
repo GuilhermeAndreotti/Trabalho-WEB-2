@@ -70,7 +70,17 @@ module.exports = {
           return { errors: "Houve um erro..." };
         }
       },
-
+      excluirTreino: async function (id) {
+        try {
+          const deletarTreino = await modeloTreino.destroy({ where: { id } });
+          if(!deletarTreino ){
+            return { errors: "Houve um erro ao excluir..." };
+          }
+          return true;
+        } catch (error) {
+          throw error;
+        }
+      },
       treinosPorJogos: async function (id) {
         try {
           const resultado = await modeloTreino.findAll({
@@ -91,7 +101,6 @@ module.exports = {
       
           return resultado;
         } catch (error) {
-          console.log(error)
           throw error;
         }
       },    
