@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../stylesheets/login.css">
+    <script src="/javascripts/treinoControle.js" type="module"></script>
     <style>
         nav ul {
             list-style-type: none;
@@ -69,13 +70,17 @@
             </ul>
           </nav>
     </header>
-    
+    <center>
+      <h1> Meus treinos</h1>
+    </center>
+    <input type="hidden" id="id" value="{{ usuario }}">
+    <div class="principal" id="principal"></div>
     <div class="div-conteudo">
-        .
+      <div class="grid-layout" id="div-pai">
+      </div> 
     </div>
-    
     <footer class="blue-background">
-        Swordplay - CP || @swordplaycputfpr
+      Swordplay - CP || @swordplaycputfpr
     </footer>
 </body>
 </html>

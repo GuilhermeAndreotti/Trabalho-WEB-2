@@ -126,3 +126,42 @@ button {
   width: 40%;
   border-radius: 15px;
 }
+
+/* Apresentação dos cards de treino */
+.grid-layout{
+  display: grid;
+  width: 20%;
+  height: 30%;
+  padding-top: 5%;
+  justify-content: space-evenly;
+  gap: 25%;
+  grid-template-columns: 80% 80% 80%;
+}
+
+.grid-filho{
+  background-color: white;
+  text-align: center;
+  line-height: 2.2;
+  height: 200px;
+  border-radius: 10%;
+  border: 3px solid gray;
+}
+
+.div-treino{
+  width: 100%;
+  border-top-right-radius: 18px;
+  border-top-left-radius: 18px;
+  background-color: #226be0;
+}
+
+.escudo {
+  width: 25%;
+  margin-top: 10px;
+}
+
+.principal{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

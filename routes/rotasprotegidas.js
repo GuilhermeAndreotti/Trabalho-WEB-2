@@ -4,7 +4,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 
 router.get('/principal', function(req, res, next){
-    res.render('principal',{ token: req.query.token});
+    res.render('principal',{ token: req.query.token, usuario: req.usuario.id });
 });
 
 router.get('/meuperfil', function(req, res, next){

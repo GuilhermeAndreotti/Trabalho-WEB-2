@@ -61,6 +61,7 @@ const exibirTable = async (resultado, i) => {
   
     const tabela = document.querySelector('#jogosTable tbody');
     tabela.innerHTML = '';
+
     const inicio = (i-1) * 5;
     const fim = inicio + 5;
     const itensPagina = resultado.slice(inicio, fim);
@@ -76,12 +77,12 @@ const exibirTable = async (resultado, i) => {
       const button = document.createElement('button');
       const button2 = document.createElement('button');
       
-      idJogo.textContent = jogo.id;
-      nomeJogo.textContent = jogo.nome;
-      modalidade.textContent = jogo.modalidade;
-      descricao.textContent = jogo.descricao;
-      button.textContent = 'Alterar';
-      button2.textContent = 'Excluir';
+      idJogo.innerHTML = jogo.id;
+      nomeJogo.innerHTML = jogo.nome;
+      modalidade.innerHTML = jogo.modalidade;
+      descricao.innerHTML = jogo.descricao;
+      button.innerHTML = 'Alterar';
+      button2.innerHTML = 'Excluir';
       
       button.style.backgroundColor = 'lightblue';
       button.style.width = '80px';
@@ -139,7 +140,6 @@ const excluirJogo = async (idJogo) => {
     alert("Jogo excluído com sucesso.")
     window.location.href = "/swordplay/cadastrarjogo?token="+token;
   }
-  
 }
 
 const setaValores = (jogo) => {

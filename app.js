@@ -2,18 +2,18 @@ var express = require('express');
 var path = require('path');
 const bcrypt = require("bcryptjs");
 var app = express();
-var session = require('express-session');
 require('dotenv').config();
 
 var mustacheExpress = require("mustache-express");
 var engine = mustacheExpress();
 app.engine("mustache", engine);
-const jwt = require('jsonwebtoken')
 
-var apiUsers = require('./routes/users');
-var apiJogos = require('./routes/jogos');
-var paginas = require('./routes/index');
-var paginasp = require('./routes/rotasprotegidas');
+const jwt = require('jsonwebtoken')
+const apiUsers = require('./routes/users');
+const apiJogos = require('./routes/jogos');
+const apiTreinos = require('./routes/treinos');
+const paginas = require('./routes/index');
+const paginasp = require('./routes/rotasprotegidas');
 
 
 app.use(express.json());
@@ -44,7 +44,9 @@ const validaLogin = (req, res, next) => {
 app.use('/', paginas);
 app.use('/apiUsers', validaLogin, apiUsers);
 app.use('/apiJogos',validaLogin, apiJogos);
+app.use('/apiTreinos',validaLogin, apiTreinos);
 app.use('/swordplay', validaLogin, paginasp);
+
 
 
 module.exports = app;
