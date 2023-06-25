@@ -32,8 +32,8 @@ const cadastrar = async () => {
         getSenha()
       );
   
-      if (resultadoToken.errors) {
-        alert("Email já está em uso.");
+      if (resultadoToken.falha) {
+        alert(JSON.stringify(resultadoToken.falha));
       } else {
         alert("Cadastrado com sucesso!");
         sessionStorage.setItem("token", resultadoToken);
@@ -49,8 +49,8 @@ const cadastrar = async () => {
     
     let resultadoToken = await usuarioService.logarUsuario(getEmail(), getSenha());
   
-    if(resultadoToken.errors){
-        alert(JSON.stringify(resultadoToken.errors));
+    if(resultadoToken.falha){
+        alert(JSON.stringify(resultadoToken.falha));
     } else {
         alert("Logando...");
         sessionStorage.setItem("token", resultadoToken);

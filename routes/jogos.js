@@ -6,16 +6,16 @@ router.post("/cadastrar", async (req, res) => {
     try {
         const { id, nome, modalidade, descricao } = req.body;
         
-        const token = await jogobd.cadastrarJogos(
+        const jogo = await jogobd.cadastrarJogos(
         id,
         nome,
         modalidade,
         descricao
         );
-
-        res.json(token);
+        res.json(jogo);
+        
     } catch (error) {
-      res.status(500).send({ error: "Erro ao cadastrar jogo de sugestão." });
+      res.status(500).send({ falha: "Erro ao acessar a rota..." });
     }
 });
 
@@ -28,7 +28,7 @@ router.get('/listar/:id', async (req, res) => {
 
   }catch (error)
   {
-    res.status(500).send({ error: "Erro ao listar jogos de sugestão." });
+    res.status(500).send({ falha: "Erro ao acessar a rota..." });
   }
 });
 
@@ -44,15 +44,15 @@ router.put("/editar", async (req, res) => {
     );
     res.json(resultado);
   } catch (error) {
-    res.status(500).send({ error: "Erro ao editar usuário." });
+    res.status(500).send({ falha: "Erro ao acessar a rota..." });
   }
 });
 
 router.delete("/:id", async (req, res) => {
-    
-  let { id } = req.params
-  let resultado = await jogobd.excluirJogos(id)
-  res.json(resultado);
+  
+    let { id } = req.params
+    let resultado = await jogobd.excluirJogos(id)
+    res.json(resultado);
 
 });
 

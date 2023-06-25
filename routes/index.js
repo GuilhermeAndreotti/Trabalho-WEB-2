@@ -82,7 +82,7 @@ router.post("/logar", async (req, res) => {
       const token = await usuariobd.logarUsuario(email, senha);  
       res.json(token);
     } catch (error) {
-      res.status(500).json({ error: "Erro ao logar com o usuário." });
+      res.status(500).json({ falha: "Erro ao logar com o usuário." });
     }
 });
   
@@ -95,7 +95,7 @@ router.post("/cadastrar", async (req, res) => {
       res.json(token);
   
     } catch (error) {
-      res.status(500).send({ error: "Erro ao cadastrar usuário." });
+      res.status(500).send({ falha: "Erro ao cadastrar usuário." });
     }
 });
 

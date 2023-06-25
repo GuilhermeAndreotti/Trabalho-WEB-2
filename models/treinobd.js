@@ -19,7 +19,7 @@ module.exports = {
             return resultado;
 
         } catch (error) {
-            return error;
+          return { falha: "Erro ao cadastrar: Verifique os campos." };
         }
     },
     listarTreinos: async function (id) {
@@ -35,7 +35,7 @@ module.exports = {
           return alltreinos;
     
         } catch (error) {
-          throw error;
+          return { falha: "Erro ao listar: Tente novamente." };
         }
     },
     listarTreinoEspecifico: async function (id) {
@@ -47,7 +47,7 @@ module.exports = {
           return treino;
     
         } catch (error) {
-          throw error;
+          return { falha: "Erro ao listar: Tente novamente." };
         }
     },
     editarTreino: async function ( id, data, etapa, jogo, obs, resp) {
@@ -55,26 +55,25 @@ module.exports = {
           const treino = await modeloTreino.findByPk(id);
       
           if (!treino) {
-            return { errors: "treino não encontrado..." };
+            return { falha: "treino não encontrado..." };
           } else {
                 treino.fk_idJogo = jogo,
                 treino.data = data,
                 treino.etapa = etapa,
                 treino.descricao = obs,
-                treino.responsavel = resp
-      
+                treino.responsavel = resp   
                 await treino.save();
                 return treino;
           }
         } catch (error) {
-          return { errors: "Houve um erro..." };
+          return { falha: "Erro ao editar: Verifique os campos." };
         }
       },
       excluirTreino: async function (id) {
         try {
           const deletarTreino = await modeloTreino.destroy({ where: { id } });
           if(!deletarTreino ){
-            return { errors: "Houve um erro ao excluir..." };
+            return { falha: "Houve um erro ao excluir..." };
           }
           return true;
         } catch (error) {

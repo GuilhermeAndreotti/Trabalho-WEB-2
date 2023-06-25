@@ -13,7 +13,7 @@ module.exports = {
       });
       return resultado;
     } catch (error) {
-      return error;
+      return { falha: "Erro: Houve um problema ao cadastrar um jogo. Verifique os campos."};
     }
   },
 
@@ -26,20 +26,20 @@ module.exports = {
       return alljogos;
 
     } catch (error) {
-      throw error;
+      return { falha: "Erro: Houve um problema ao listar os jogos."};
     }
   },
 
   excluirJogos: async function (id) {
     try {
       const deletarJogo = await modeloJogo.destroy({ where: { id } });
-      if(!deletarJogo){
-        return { errors: "Houve um erro ao excluir..." };
+
+      if (deletarJogo > 0) {
+        return true;
       }
-      return true;
 
     } catch (error) {
-      return { errors: "Houve um erro..." };
+      return { falha: "Erro: Exclua primeiro o registo de treino"};
     }
   },
 
@@ -48,18 +48,18 @@ module.exports = {
       const jogo = await modeloJogo.findByPk(id);
   
       if (!jogo) {
-        return { errors: "Jogo não encontrado..." };
+        return { falha: "Jogo não encontrado..." };
       } else {
           jogo.nome = nome;
           jogo.modalidade = modalidade;
           jogo.descricao = descricao;
   
-          await jogo.save();
-  
+          await jogo.save();  
           return jogo;
+
       }
     } catch (error) {
-      return { errors: "Houve um erro..." };
+      return { falha: "Erro: Houve um problema ao editar o jogo em questão."};
     }
   },
 

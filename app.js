@@ -29,7 +29,7 @@ const validaLogin = (req, res, next) => {
       token = req.headers.authorization.split(' ')[1];
     }
     if (!token) {
-      return res.status(401).json({ errors: 'Token não fornecido' });
+      return res.status(401).json({ falha: 'Token não fornecido' });
     }
     jwt.verify(token, process.env.permissaojwt, (error, decoded) => {
       if (!error) {

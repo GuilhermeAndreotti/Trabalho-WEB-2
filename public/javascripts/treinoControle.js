@@ -1,5 +1,8 @@
 import jogoService from "./jogoService.js"
 import treinoService from "./treinoService.js";
+import { validaVazio } from "./validations/validaVazio.js"
+import { validaData } from "./validations/validaTreino.js";
+
 const token = sessionStorage.getItem("token");
 let cadastro = true;
 
@@ -38,8 +41,8 @@ const lerJogos = async () => {
 
     let resultado = await jogoService.listarJogos(getId());
   
-    if (resultado.errors) {
-      alert(JSON.stringify(resultado.errors));
+    if (resultado.falha) {
+      alert(JSON.stringify(resultado.falha));
     } else {
         const selectJogo = document.getElementById('jogopassado');
         resultado.forEach((jogo) =>
@@ -54,29 +57,32 @@ const lerJogos = async () => {
 
 const cadastrar = async () => {
 
-  let resultado = await treinoService.cadastrarTreino(
-      getId(),
-      getData(),
-      getEtapa(),
-      getJogoID(),
-      getOBS(),
-      getResp(),
-  );
+  if(validaData(getData()) && validaVazio(getOBS()) && validaVazio(getResp())){
+    let resultado = await treinoService.cadastrarTreino(
+        getId(),
+        getData(),
+        getEtapa(),
+        getJogoID(),
+        getOBS(),
+        getResp(),
+    );
 
-  if (resultado.errors) {
-    alert("ERRO = " + resultado.erros);
-  } else {
-    alert("Treino cadastrado com sucesso!");
-    window.location.href = "/swordplay/cadastrartreino?token="+token;
+    if (resultado.falha) {
+      alert(JSON.stringify(resultado.falha));
+    } else {
+      alert("Treino cadastrado com sucesso!");
+      window.location.href = "/swordplay/cadastrartreino?token="+token;
+    }
   }
+
 };
 
 const lerTreinos = async () => {
 
   let resultado = await treinoService.listarTreinos(getId());
 
-  if (resultado.errors) {
-    alert(JSON.stringify(resultado.errors));
+  if (resultado.falha) {
+    alert(JSON.stringify(resultado.falha));
   } else {
     paginacao(resultado);
     exibirCard(resultado, 1);
@@ -163,8 +169,8 @@ const setaValores = async () => {
 
   let resultado = await treinoService.listarTreinoEspecifico(idTreino, token);
 
-  if (resultado.errors) {
-    alert(JSON.stringify(resultado.errors));
+  if (resultado.falha) {
+    alert(JSON.stringify(resultado.falha));
   } else {
     document.querySelector('input[name="treino"]').value = resultado.data;
     document.getElementById("etapa").value = resultado.etapa;
@@ -178,19 +184,21 @@ const setaValores = async () => {
 // Editar
 const editar = async () => {
   
-  let resultado = await treinoService.editarTreino(
-    sessionStorage.getItem("idTreino"),
-    getData(),
-    getEtapa(),
-    getJogoID(),
-    getOBS(),
-    getResp(),
-  );
-  if (resultado.errors) {
-    alert("Houve um erro!" + resultado.errors);
-  } else {
-    alert("Dados editados com sucesso!");
-    window.location.href = "/swordplay/principal?token="+token;
+  if(validaData(getData()) && validaVazio(getOBS()) && validaVazio(getResp())){
+    let resultado = await treinoService.editarTreino(
+      sessionStorage.getItem("idTreino"),
+      getData(),
+      getEtapa(),
+      getJogoID(),
+      getOBS(),
+      getResp(),
+    );
+    if (resultado.falha) {
+      alert("Houve um erro!" + resultado.falha);
+    } else {
+      alert("Dados editados com sucesso!");
+      window.location.href = "/swordplay/principal?token="+token;
+    }
   }
 } 
 
@@ -200,8 +208,8 @@ const excluirTreino = async (idJogo) => {
     sessionStorage.getItem("idTreino"), token
   );
 
-  if(resultado.erros){
-    alert("Houve um erro ao excluir, tente novamente...")
+  if(resultado.falha){
+    alert(JSON.stringify(resultado.falha))
   }else{
     alert("Treino excluído com sucesso.")
     window.location.href = "/swordplay/principal?token="+token;

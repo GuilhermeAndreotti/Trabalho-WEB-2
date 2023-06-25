@@ -15,7 +15,7 @@ router.post("/cadastrar", async (req, res) => {
         );
         res.json(resultado);
     } catch (error) {
-      res.status(500).send({ errors: "Erro ao cadastrar o treino." });
+      res.status(500).send({ falha: "Erro ao cadastrar o treino." });
     }
 });
 
@@ -28,7 +28,7 @@ router.get('/listar/:id', async (req, res) => {
 
     }catch (error)
     {
-      res.status(500).send({ errors: "Erro ao listar treinos." });
+      res.status(500).send({ falha: "Erro ao listar treinos." });
     }
 });
 
@@ -40,7 +40,7 @@ router.get('/especifico/:id', async (req, res) => {
 
     }catch (error)
     {
-      res.status(500).send({ errors: "Erro ao listar treinos." });
+      res.status(500).send({ falha: "Erro ao listar treinos." });
   }
 });
 
@@ -58,7 +58,7 @@ router.put("/editar", async (req, res) => {
       );
       res.json(resultado);
     } catch (error) {
-      res.status(500).send({ errors: "Erro ao editar treino." });
+      res.status(500).send({ falha: "Erro ao editar treino." });
     }
 });
 
@@ -78,7 +78,7 @@ router.get('/treinos/:id', async (req, res) => {
 
   }catch (error)
   {
-    res.status(500).send({ errors: "Erro ao listar treinos por jogos." });
+    res.status(500).send({ falha: "Erro ao listar treinos por jogos." });
   }
 });
 

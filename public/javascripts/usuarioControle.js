@@ -34,8 +34,8 @@ const editar = async () => {
       getSenha()
     );
 
-    if (resultadoToken.errors) {
-      alert("Houve um erro!" + resultadoToken.errors);
+    if (resultadoToken.falha) {
+      alert("Houve um erro!" + resultadoToken.falha);
     } else {
       alert("Dados editados com sucesso!");
       sessionStorage.setItem("token", resultadoToken);
@@ -53,8 +53,8 @@ const excluir = async () => {
     getId(), token
   );
 
-  if(resultadoToken.erros){
-    alert("Houve um erro ao excluir, tente novamente...")
+  if(resultadoToken.falha){
+    alert(JSON.stringify(resultadoToken.falha))
   }else{
     alert("Usuário excluido com sucesso... nunca é um adeus...")
     window.location.href = "http://localhost:3100";

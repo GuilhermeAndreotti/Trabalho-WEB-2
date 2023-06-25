@@ -23,7 +23,7 @@ router.put("/editar", async (req, res) => {
     );
     res.json(token);
   } catch (error) {
-    res.status(500).send({ error: "Erro ao editar usuário." });
+    res.status(500).send({ falha: "Erro ao editar usuário." });
   }
 });
 

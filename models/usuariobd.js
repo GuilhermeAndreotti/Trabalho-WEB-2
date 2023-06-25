@@ -22,7 +22,7 @@ module.exports = {
       return token;
 
     } catch (error) {
-      return error;
+      return { falha: "Erro ao cadastrar: Email em uso..." };
     }
   },
   
@@ -31,13 +31,13 @@ module.exports = {
       const usuario = await modeloUsuario.findOne({ where: { email } });
       
       if (!usuario) {
-        return { errors: "Usuário não encontrado" };
+        return { falha: "Usuário não encontrado" };
       }
       
       const senhavalida = await bcrypt.compare(senha, usuario.password);
 
       if (!senhavalida) {
-        return { errors: "Senha inválida" };
+        return { falha: "Senha inválida" };
       } 
       
       const token = jwt.sign(
@@ -49,7 +49,7 @@ module.exports = {
       return token;
 
     } catch (error) {
-      return { errors: "Erro ao autenticar usuário" };
+      return { falha: "Erro ao autenticar usuário" };
     }
   },
 
@@ -58,7 +58,7 @@ module.exports = {
       const usuario = await modeloUsuario.findByPk(id);
   
       if (!usuario) {
-        return { errors: "Usuário não encontrado..." };
+        return { falha: "Usuário não encontrado..." };
       } else {
         usuario.nome = nome;
         usuario.idade = idade;
@@ -78,20 +78,20 @@ module.exports = {
         return token;
       }
     } catch (error) {
-      return { errors: "Houve um erro..." };
+      return { falha: "Houve um erro..." };
     }
   },
 
   excluirUsuario: async function (id) {
     try {
-      const deletarUser = await modeloUsuario.destroy({ where: { id } });
-      if(!deletarUser){
-        return { errors: "Houve um erro ao excluir..." };
+      const deletarUsuario = await modeloUsuario.destroy({ where: { id } });
+
+      if (deletarUsuario > 0) {
+        return true;
       }
-      return {resultado: true}
 
     } catch (error) {
-      return { errors: "Houve um erro..." };
+      return { falha: "Erro: Exclua primeiro o registo de jogo e treino"};
     }
   }
 

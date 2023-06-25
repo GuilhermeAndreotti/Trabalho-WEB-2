@@ -1,4 +1,5 @@
 import jogoService from "./jogoService.js"
+import { validaVazio } from "./validations/validaVazio.js";
 const token = sessionStorage.getItem("token");
 let cadastro = true;
 let idJogo = -1;
@@ -23,18 +24,20 @@ const getDescricao = () => {
 // Cadastrar
 const cadastrar = async () => {
 
-    let resultado = await jogoService.cadastrarJogo(
-        getId(),
-        getNome(),
-        getModalidade(),
-        getDescricao(),
-    );
+  if (validaVazio(getNome()) && validaVazio(getDescricao())){
+      let resultado = await jogoService.cadastrarJogo(
+          getId(),
+          getNome(),
+          getModalidade(),
+          getDescricao(),
+      );
 
-    if (resultado.errors) {
-      alert(JSON.stringify(resultado.erros));
-    } else {
-      alert("O cadastro foi realizado.");
-      window.location.href = "/swordplay/cadastrarjogo?token="+token;
+      if (resultado.falha) {
+        alert(JSON.stringify(resultado.falha));
+      } else {
+        alert("O cadastro foi realizado.");
+        window.location.href = "/swordplay/cadastrarjogo?token="+token;
+      }
     }
 };
 
@@ -117,8 +120,8 @@ const lerJogos = async () => {
 
   let resultado = await jogoService.listarJogos(getId());
 
-  if (resultado.errors) {
-    alert(JSON.stringify(resultado.errors));
+  if (resultado.falha) {
+    alert(JSON.stringify(resultado.falha));
   } else {
     paginacao(resultado);
     exibirTable(resultado, 1);
@@ -129,8 +132,8 @@ const excluirJogo = async (idJogo) => {
 
   let resultado = await jogoService.excluirJogo(idJogo);
 
-  if(resultado.erros){
-    alert("Houve um erro ao excluir, tente novamente...")
+  if(resultado.falha){
+    alert(JSON.stringify(resultado.falha))
   }else{
     alert("Jogo excluído com sucesso.")
     window.location.href = "/swordplay/cadastrarjogo?token="+token;
@@ -155,19 +158,21 @@ const setaValores = (jogo) => {
 // Editar
 const editar = async () => {
     
-    let resultado = await jogoService.editarJogo (
-      idJogo,
-      getNome(),
-      getModalidade(),
-      getDescricao(), 
-    );
+    if (validaVazio(getNome()) && validaVazio(getDescricao())){
+      let resultado = await jogoService.editarJogo (
+        idJogo,
+        getNome(),
+        getModalidade(),
+        getDescricao(), 
+      );
 
-    if (resultado.errors) {
-      alert("Houve um erro!" + resultado.errors);
-    } else {
-      idJogo = -1;
-      alert("Dados editados com sucesso!");
-      window.location.href = "/swordplay/cadastrarjogo?token="+token;
+      if (resultado.falha) {
+        alert("Houve um erro!" + resultado.falha);
+      } else {
+        idJogo = -1;
+        alert("Dados editados com sucesso!");
+        window.location.href = "/swordplay/cadastrarjogo?token="+token;
+      }
     }
 } 
    
