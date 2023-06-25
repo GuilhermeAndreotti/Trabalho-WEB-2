@@ -100,7 +100,6 @@ router.post("/cadastrar", async (req, res) => {
 });
 
 router.get("/logout", (req, res) =>{
-    //sessionStorage.removeItem('token');
     res.redirect('/');
 });
   

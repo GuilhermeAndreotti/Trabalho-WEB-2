@@ -1,9 +1,7 @@
 import jogoService from "./jogoService.js"
 import treinoService from "./treinoService.js";
-
-let cadastro = true;
-let idJogo = -1;
 const token = sessionStorage.getItem("token");
+let cadastro = true;
 
 const getId = () => {
   return document.getElementById('id').value;
@@ -38,8 +36,7 @@ const randomNumero = () => {
 
 const lerJogos = async () => {
 
-    const token = sessionStorage.getItem("token");
-    let resultado = await jogoService.listarJogos(getId(), token);
+    let resultado = await jogoService.listarJogos(getId());
   
     if (resultado.errors) {
       alert(JSON.stringify(resultado.errors));
@@ -64,7 +61,6 @@ const cadastrar = async () => {
       getJogoID(),
       getOBS(),
       getResp(),
-      token
   );
 
   if (resultado.errors) {
@@ -77,7 +73,7 @@ const cadastrar = async () => {
 
 const lerTreinos = async () => {
 
-  let resultado = await treinoService.listarTreinos(getId(), token);
+  let resultado = await treinoService.listarTreinos(getId());
 
   if (resultado.errors) {
     alert(JSON.stringify(resultado.errors));
@@ -189,7 +185,6 @@ const editar = async () => {
     getJogoID(),
     getOBS(),
     getResp(),
-    token
   );
   if (resultado.errors) {
     alert("Houve um erro!" + resultado.errors);
@@ -214,7 +209,7 @@ const excluirTreino = async (idJogo) => {
 }
 
 window.onload = () => {
-    
+    lerJogos();
     const principal = document.getElementById('principal');
     if(principal){
       sessionStorage.setItem("edicao", false);
@@ -222,7 +217,7 @@ window.onload = () => {
     }
     
     if (sessionStorage.getItem("edicao") === "true") {
-      lerJogos();
+      //lerJogos();
       setaValores();
       sessionStorage.setItem("edicao", false);
     }
@@ -238,7 +233,6 @@ window.onload = () => {
 
     const cadastrarButton = document.getElementById('cadastrarBtn');
     if (cadastrarButton){
-      lerJogos();
       cadastrarButton.addEventListener('click', cadastrar);
     }
 

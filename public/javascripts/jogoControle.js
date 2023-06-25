@@ -1,4 +1,5 @@
 import jogoService from "./jogoService.js"
+const token = sessionStorage.getItem("token");
 let cadastro = true;
 let idJogo = -1;
 
@@ -21,13 +22,12 @@ const getDescricao = () => {
 
 // Cadastrar
 const cadastrar = async () => {
-    const token = sessionStorage.getItem("token");
+
     let resultado = await jogoService.cadastrarJogo(
         getId(),
         getNome(),
         getModalidade(),
         getDescricao(),
-        token
     );
 
     if (resultado.errors) {
@@ -114,9 +114,8 @@ const exibirTable = async (resultado, i) => {
 
 
 const lerJogos = async () => {
-  const token = sessionStorage.getItem("token");
 
-  let resultado = await jogoService.listarJogos(getId(), token);
+  let resultado = await jogoService.listarJogos(getId());
 
   if (resultado.errors) {
     alert(JSON.stringify(resultado.errors));
@@ -128,11 +127,7 @@ const lerJogos = async () => {
 
 const excluirJogo = async (idJogo) => {
 
-  const token = sessionStorage.getItem("token")
-
-  let resultado = await jogoService.excluirJogo(
-    idJogo, token
-  );
+  let resultado = await jogoService.excluirJogo(idJogo);
 
   if(resultado.erros){
     alert("Houve um erro ao excluir, tente novamente...")
@@ -160,14 +155,11 @@ const setaValores = (jogo) => {
 // Editar
 const editar = async () => {
     
-    const token = sessionStorage.getItem("token")
-
     let resultado = await jogoService.editarJogo (
       idJogo,
       getNome(),
       getModalidade(),
       getDescricao(), 
-      token
     );
 
     if (resultado.errors) {

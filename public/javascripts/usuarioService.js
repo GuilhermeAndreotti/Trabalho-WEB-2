@@ -1,3 +1,5 @@
+const token = sessionStorage.getItem("token");
+
 let usuarioService = {
   
     cadastrarUsuario: async function (nome, idade, email, senha) {
@@ -30,13 +32,11 @@ let usuarioService = {
 
     
     editarUsuario: async function (id, nome, idade, email, senha) {
-        
-        const token = sessionStorage.getItem("token");
-        
+              
         const data = {
             method: "PUT",
             headers: { "Content-type": "application/json" ,
-            Authorization: `Bearer ${token}`},
+            "Authorization": "Bearer " + token},
             body: JSON.stringify({
                 id: id,
                 nome: nome,
@@ -50,12 +50,11 @@ let usuarioService = {
     },
 
     excluirUsuario: async function (id) {
-
-        const token = sessionStorage.getItem("token");
+        
         const data = {
             method: "DELETE",
             headers: { "Content-type": "application/json", 
-            Authorization: `Bearer ${token}`},
+            "Authorization": "Bearer " + token},
         };
         const resposta = await fetch("/apiUsers/" + id, data);
         return await resposta.json();

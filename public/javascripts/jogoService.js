@@ -1,6 +1,8 @@
+const token = sessionStorage.getItem("token");
+
 let jogoService = {
   
-    cadastrarJogo: async function (id, nome, modalidade, descricao, token) {       
+    cadastrarJogo: async function (id, nome, modalidade, descricao) {       
         const data = {
             method: "POST",
             headers: { "Content-type": "application/json",
@@ -16,7 +18,7 @@ let jogoService = {
         return await resposta.json();
     },
 
-    listarJogos: async function (id, token) {      
+    listarJogos: async function (id) {      
         const data = {
           method: "GET",
           headers: {
@@ -28,7 +30,7 @@ let jogoService = {
         return await resposta.json();
     },
 
-    excluirJogo: async function (id, token) {
+    excluirJogo: async function (id) {
         const data = {
             method: "DELETE",
             headers: { "Content-type": "application/json", 
@@ -38,7 +40,7 @@ let jogoService = {
         return await resposta.json();
     },
 
-    editarJogo: async function (id, nome, modalidade, descricao, token) {
+    editarJogo: async function (id, nome, modalidade, descricao) {
         
         const data = {
             method: "PUT",

@@ -1,33 +1,8 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = require("../BancoDeDados/connection");
-const { modeloUsuario } = require("./usuariobd");
+const modeloJogo = require("./jogomodelo");
+const modeloUsuario = require("./usuariomodelo");
 
-const modeloJogo = sequelize.define("Jogo", {
-  
-  fk_id:{
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  nome:{
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  modalidade:{
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  descricao:{
-    type: DataTypes.STRING,
-    allowNull: false,
-  },  
-});   
+module.exports = {
 
-modeloJogo.sync({ force: false });
-
-modeloJogo.belongsTo(modeloUsuario, { foreignKey: "fk_id" });
-
-module.exports = { modeloJogo,
-  
   cadastrarJogos: async function (id, nome, modadlidade, descricao) {
     try {
       const resultado = await modeloJogo.create({

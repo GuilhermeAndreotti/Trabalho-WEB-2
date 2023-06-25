@@ -1,8 +1,7 @@
+const token = sessionStorage.getItem("token");
 
-
-let treinoService = {
-    
-    cadastrarTreino: async function (id, data, etapa, jogo, obs, resp, token) {       
+let treinoService = {   
+    cadastrarTreino: async function (id, data, etapa, jogo, obs, resp) {       
         const requisicao = {
             method: "POST",
             headers: { "Content-type": "application/json",
@@ -20,7 +19,7 @@ let treinoService = {
         return await resposta.json();
     },
 
-    listarTreinos: async function (id, token) {      
+    listarTreinos: async function (id) {      
         const data = {
           method: "GET",
           headers: {
@@ -32,7 +31,7 @@ let treinoService = {
         return await resposta.json();
     },
 
-    listarTreinoEspecifico: async function (id, token) {      
+    listarTreinoEspecifico: async function (id) {      
         const data = {
           method: "GET",
           headers: {
@@ -43,7 +42,7 @@ let treinoService = {
         const resposta = await fetch("/apiTreinos/especifico/"+id, data);
         return await resposta.json();
     },
-    editarTreino: async function (id, data, etapa, jogo, obs, resp, token) {
+    editarTreino: async function (id, data, etapa, jogo, obs, resp) {
         const requisicaoData = {
             method: "PUT",
             headers: { "Content-type": "application/json" ,
@@ -61,7 +60,7 @@ let treinoService = {
             return await resposta.json();
     },
 
-    excluirTreino: async function (id, token) {
+    excluirTreino: async function (id) {
         const data = {
             method: "DELETE",
             headers: { "Content-type": "application/json", 
