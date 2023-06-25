@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="../stylesheets/login.css">
-    <script src="/javascripts/treinoControle.js" type="module"></script>
+    <script src="/javascripts/graficoControle.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         nav ul {
             list-style-type: none;
@@ -57,28 +58,28 @@
             <img src="../images/logo.png" alt="Swordplay Logo" class="logoimg">
             <a class="texto-titulo" href="/">Swordplay - CP</a>
         </div>
-          <nav>
-            <ul class="menu">
-              <li><a href="/swordplay/meuperfil/?token={{token}}"> Meu Perfil </a></li>
-              <li><a href="/swordplay/grafico?token={{token}}"> Acessar Gráfico </a></li>
-              <li><a href="#"> Cadastrar </a>
-                <ul class="submenu">
-                  <li><a href="/swordplay/cadastrarjogo/?token={{token}}"> Jogos </a></li>
-                  <li><a href="/swordplay/cadastrartreino/?token={{token}}"> Treino </a></li>
-                </ul>
-              </li>
-              <li><a href="/logout">Deslogar</a></li>
-            </ul>
-          </nav>
+        <nav>
+          <ul class="menu">
+            <li><a href="/swordplay/meuperfil/?token={{token}}"> Meu Perfil </a></li>
+            <li><a href="#"> Cadastrar </a>
+              <ul class="submenu">
+                <li><a href="/swordplay/cadastrarjogo/?token={{token}}"> Jogos </a></li>
+                <li><a href="/swordplay/cadastrartreino/?token={{token}}"> Treino </a></li>
+              </ul>
+            </li>
+            <li><a href="/swordplay/principal?token={{token}}">Voltar...</a></li>
+          </ul>
+        </nav>
     </header>
     <center>
-      <h1> Meus treinos</h1>
+      <h2> Gráfico, treinos por jogos. </h2><br><br>
     </center>
     <input type="hidden" id="id" value="{{ usuario }}">
-    <div class="principal" id="principal"></div>
     <div class="div-conteudo">
-      <div class="grid-layout" id="div-pai">
-      </div> 
+      <div style="width: 600px; height: 600px;">
+        <canvas id="graficoPizza"></canvas>
+      </div>
+        
     </div>
     <footer class="blue-background">
       Swordplay - CP || @swordplaycputfpr

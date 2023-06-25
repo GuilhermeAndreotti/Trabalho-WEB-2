@@ -19,6 +19,10 @@ router.get('/cadastrartreino', function(req, res, next){
   res.render('cadastrotreino',{ token: req.query.token, usuario: req.usuario.id});
 });
 
+router.get('/grafico', function(req, res, next){
+  res.render('grafico',{ token: req.query.token, usuario: req.usuario.id});
+});
+
 
 
 

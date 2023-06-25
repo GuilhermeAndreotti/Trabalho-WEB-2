@@ -70,4 +70,16 @@ router.delete("/:id", async (req, res) => {
 
 });
 
+router.get('/treinos/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const treinos = await treinobd.treinosPorJogos(id);
+    res.json(treinos);
+
+  }catch (error)
+  {
+    res.status(500).send({ errors: "Erro ao listar treinos por jogos." });
+  }
+});
+
 module.exports = router;

@@ -1,5 +1,6 @@
 const modeloTreino = require("./treinomodelo");
 const modeloJogo = require("./jogomodelo");
+const { Sequelize } = require('../BancoDeDados/connection');
 
 module.exports = {
     
@@ -70,17 +71,28 @@ module.exports = {
         }
       },
 
-      excluirTreino: async function (id) {
+      treinosPorJogos: async function (id) {
         try {
-          const deletarTreino = await modeloTreino.destroy({ where: { id } });
-          if(!deletarTreino ){
-            return { errors: "Houve um erro ao excluir..." };
-          }
-          return true;
-    
+          const resultado = await modeloTreino.findAll({
+            attributes: [
+              'fk_idJogo',
+              [Sequelize.fn('COUNT', Sequelize.col('*')), 'quantidade']
+            ],
+            include: [{
+              model: modeloJogo,
+              attributes: ['nome']
+            }],
+            where: {
+              fk_id: id
+            },
+            group: ['fk_idJogo'],
+            raw: true
+          });
+      
+          return resultado;
         } catch (error) {
-          return { errors: "Houve um erro..." };
+          console.log(error)
+          throw error;
         }
-      },
-    
+      },    
 }
