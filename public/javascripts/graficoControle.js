@@ -1,18 +1,16 @@
 import jogoService from "./jogoService.js"
 import treinoService from "./treinoService.js";
 const token = sessionStorage.getItem("token");
-let cadastro = true;
+//import PDFDocument from 'pdfkit';
+//import saveAs from 'file-saver';
 
 const getId = () => {
   return document.getElementById('id').value;
 };
 
 const getDadosTabela = async () => {
-
     const resultado = await treinoService.treinosPorData(getId());
-    alert(JSON.stringify(resultado))
     gerarGrafico(resultado);
-
 }
 
 const gerarGrafico = (resultado) =>{
@@ -39,12 +37,10 @@ const gerarGrafico = (resultado) =>{
         data: data,
         options: options
       });
-
 }
 
 window.onload = () => {
 
     getDadosTabela();
-    gerarGrafico();
 
 }

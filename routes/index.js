@@ -5,6 +5,7 @@ const nodemailer = require('nodemailer');
 const usuariobd = require("../models/usuariobd");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { UsuarioSchema } = require("../validations/userJOI");
 
 // Rotas não protegidas.
 
@@ -89,7 +90,13 @@ router.post("/logar", async (req, res) => {
 router.post("/cadastrar", async (req, res) => {
     try {
       const { nome, idade, email, senha } = req.body;
-  
+      
+      const { error } = UsuarioSchema.validate({email,idade,senha});
+
+      if(error){
+        return res.json({falha: "Email ou Senha inválido..."})
+      }
+
       const criptosenha = await bcrypt.hash(senha, 10);
       const token = await usuariobd.cadastrarUsuario(nome,idade,email,criptosenha);
       res.json(token);

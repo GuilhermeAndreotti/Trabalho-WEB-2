@@ -1,10 +1,17 @@
 const express = require("express");
 const treinobd = require("../models/treinobd");
 const router = express.Router();
+const { treinoSchema } = require("../validations/treinoJOI");
 
 router.post("/cadastrar", async (req, res) => {    
     try {
-        const { id, data, etapa, jogo, obs, resp } = req.body;
+        const { id, data, etapa, jogo, obs, resp } = req.body;       
+        const { error } = treinoSchema.validate({data});
+
+        if(error){
+          return res.json({falha: "Data inválida..."})
+        }
+
         const resultado = await treinobd.cadastrarTreinos(
           id, 
           data, 
@@ -47,7 +54,12 @@ router.get('/especifico/:id', async (req, res) => {
 router.put("/editar", async (req, res) => {
     try {
       const { id, data, etapa, jogo, obs, resp } = req.body;
-          
+      const { error } = treinoSchema.validate({data});
+
+      if(error){
+        return res.json({falha: "Data inválida..."})
+      }
+              
       const resultado = await treinobd.editarTreino(
         id, 
         data, 
