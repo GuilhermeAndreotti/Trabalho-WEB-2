@@ -9,9 +9,6 @@ build/
 # Dependências
 node_modules/
 
-# Arquivos de configuração
-.env
-
 # Arquivos de backup
 *.bak
 *.swp
